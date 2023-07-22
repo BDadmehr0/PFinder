@@ -17,6 +17,19 @@ def print_string(domain):
                 s.sendall(query.encode())
 
                 data = s.recv(4096)
+                while data:
+                    # Parse DNS response to extract subdomains
+                    index = data.find(query.encode())
+                    if index == -1:
+                        break
+
+                    start = index + len(query) + 1
+                    length = data[start]
+                    subdomain = data[start + 1: start + 1 + length].decode()
+                    subdomains.add(subdomain)
+
+                    data = data[start + 1 + length:]
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
