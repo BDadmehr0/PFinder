@@ -1,7 +1,7 @@
 import argparse
 
-def print_string(input_string):
-    print(f"The string you entered is: {input_string}")
+def print_string(domain):
+    subdomains = set()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
