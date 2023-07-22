@@ -7,6 +7,16 @@ def print_string(domain):
     common_subdomains = ["www", "mail", "ftp", "admin", "blog", "api"]
     for subdomain in common_subdomains:
         subdomains.add(f"{subdomain}.{domain}")
+    
+    try:
+        # Fetch DNS A records for the domain
+        for record_type in ['A', 'CNAME']:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.connect(('8.8.8.8', 53))  # Use Google's public DNS server
+                query = f"{domain} {record_type}\x00\x01"
+                s.sendall(query.encode())
+
+                data = s.recv(4096)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
