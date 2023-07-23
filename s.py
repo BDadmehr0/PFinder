@@ -11,9 +11,9 @@ def check_url_status(url):
         else:
             return False            
     except requests.Timeout:
-        print(f"The URL '{url}' timed out after 5 seconds.")
+        return False
     except requests.RequestException as e:
-        print(f"An error occurred while checking the URL '{url}': {e}")
+        return False
 
 
 # def validate_url(url):
@@ -74,7 +74,7 @@ if __name__ == "__main__":
         subdomains = finder(args.print_string)  # Corrected the attribute name here
         print(f"Subdomains of {args.print_string}:")
         for subdomain in subdomains:
-            status = check_url_status(url=subdomain)
+            status = check_url_status(url="http://"+subdomain)
             print(f'{subdomain} status: {status}')
     else:
         print("Error: Please provide the string using the -d flag.")
