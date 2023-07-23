@@ -1,8 +1,20 @@
 import argparse
 import socket
 import requests
-
 import re
+
+def check_url_status(url):
+    try:
+        response = requests.get(url, timeout=5)
+        if response.status_code == 200:
+            return True
+        else:
+            return False            
+    except requests.Timeout:
+        print(f"The URL '{url}' timed out after 5 seconds.")
+    except requests.RequestException as e:
+        print(f"An error occurred while checking the URL '{url}': {e}")
+
 
 def validate_url(url):
     # Regular expression pattern to match URLs
@@ -64,9 +76,10 @@ if __name__ == "__main__":
             subdomains = finder(args.print_string)  # Corrected the attribute name here
             print(f"Subdomains of {args.print_string}:")
             for subdomain in subdomains:
-                print(subdomain)
+                status = check_url_status(url=subdomain)
+                print(f'{subdomain} status: {status}')
         else:
-            print()
+            print('URL is Not Valid')
 
     else:
         print("Error: Please provide the string using the -d flag.")
