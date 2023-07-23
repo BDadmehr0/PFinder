@@ -2,24 +2,13 @@
 # About
 PFinder | Subdomin Finder Python
 
-TNT sms is a program for Linux that will be transferred to Termux in the future
-We want to extract many APIs from Iranian sites and use them to send SMS. Also, the important part of this issue is that the sites do not limit us, for which I have made other plans, such as changing the IP address or user agents.
-
-## Installation
-
-```bash
-chmod +x ./install.sh
-sudo ./install.sh # install to /usr/local/bin/
-sudo tntsms.sh
-```
+PFinder is a subdomain finder written in Python.
+It tests using the list of words that are likely to exist in the link and returns True if the link is correct
 
 ## Usage
 
-```python
-from lib.sms import send
-
-num = '09*********'
-send(range_n=15, phone_number=num)
+```bash
+$ python3 main.py -d exampel.com # without www. or https:// or http://
 ```
 
 ## Contributing
