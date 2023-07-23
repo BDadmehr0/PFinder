@@ -1,6 +1,7 @@
 import argparse
+import socket
 
-def print_string(domain):
+def finder(domain):
     subdomains = set()
 
     # Add common subdomains to check (e.g., www, mail, ftp, etc.)
@@ -29,14 +30,21 @@ def print_string(domain):
                     subdomains.add(subdomain)
 
                     data = data[start + 1 + length:]
+    except (socket.gaierror, ConnectionRefusedError, OSError):
+        pass
 
+    return subdomains
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", "--print-string", type=str, help="Print the provided string.")
     args = parser.parse_args()
 
-    if args.print_string:
-        print_string(args.print_string)
+    if args.print_string:  # Corrected the attribute name here
+        subdomains = finder(args.print_string)  # Corrected the attribute name here
+        print(f"Subdomains of {args.print_string}:")
+        for subdomain in subdomains:
+            print(subdomain)
+
     else:
         print("Error: Please provide the string using the -d flag.")
