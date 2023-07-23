@@ -16,18 +16,17 @@ def check_url_status(url):
         print(f"An error occurred while checking the URL '{url}': {e}")
 
 
-def validate_url(url):
-    # Regular expression pattern to match URLs
-    url_pattern = re.compile(
-        r'^(?:http|https)://'  # Scheme (http or https)
-        r'(?:[a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+'  # Domain (e.g., www.example.com)
-        r'(?:\.[a-zA-Z]{2,})'  # Top-level domain (e.g., .com, .org)
-        r'(?::\d+)?'  # Optional port number (e.g., :80)
-        r'(?:/[^\s]*)?$'  # Optional path (e.g., /page or /path/to/page)
-    )
+# def validate_url(url):
+#     # Regular expression pattern to match URLs
+#     url_pattern = re.compile(
+#         r'(?:[a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+'  # Domain (e.g., www.example.com)
+#         r'(?:\.[a-zA-Z]{2,})'  # Top-level domain (e.g., .com, .org)
+#         r'(?::\d+)?'  # Optional port number (e.g., :80)
+#         r'(?:/[^\s]*)?$'  # Optional path (e.g., /page or /path/to/page)
+#     )
 
-    # Check if the URL matches the pattern
-    return bool(url_pattern.match(url))
+#     # Check if the URL matches the pattern
+#     return bool(url_pattern.match(url))
 
 
 
@@ -72,14 +71,10 @@ if __name__ == "__main__":
 
 
     if args.print_string:  # Corrected the attribute name here
-        if validate_url(args.print_string):
-            subdomains = finder(args.print_string)  # Corrected the attribute name here
-            print(f"Subdomains of {args.print_string}:")
-            for subdomain in subdomains:
-                status = check_url_status(url=subdomain)
-                print(f'{subdomain} status: {status}')
-        else:
-            print('URL is Not Valid')
-
+        subdomains = finder(args.print_string)  # Corrected the attribute name here
+        print(f"Subdomains of {args.print_string}:")
+        for subdomain in subdomains:
+            status = check_url_status(url=subdomain)
+            print(f'{subdomain} status: {status}')
     else:
         print("Error: Please provide the string using the -d flag.")
