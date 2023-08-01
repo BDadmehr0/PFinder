@@ -66,7 +66,7 @@ def finder(domain):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-d", "--print-string", type=str, help="Print the provided string.")
+    parser.add_argument("-d", "--find-subdomin", type=str, help="Input Target domain.")
     args = parser.parse_args()
 
 
