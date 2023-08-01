@@ -70,9 +70,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
 
-    if args.print_string:  # Corrected the attribute name here
-        subdomains = finder(args.print_string)  # Corrected the attribute name here
-        print(f"Subdomains of {args.print_string}:")
+    if args.target_domain:  # Corrected the attribute name here
+        subdomains = finder(args.target_domain)  # Corrected the attribute name here
+        print(f"Subdomains of {args.target_domain}:")
         for subdomain in subdomains:
             status = check_url_status(url="http://"+subdomain)
             print(f'{subdomain} status: {status}')
