@@ -38,7 +38,8 @@ def finder(domain):
                          "accounts", "adwords", "emails", "pkg", "smtp",
                          "support", "api", "examregistration", "skyline",
                          "help", "docs", "f.cloud", "raw", "avatars",
-                         "cla", "jobs"]
+                         "cla", "jobs", "enterprise", "classroom", "talks",
+                         "status",  "offer", "res"]
     for subdomain in common_subdomains:
         subdomains.add(f"{subdomain}.{domain}")
     
