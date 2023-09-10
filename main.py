@@ -36,7 +36,7 @@ def finder(domain):
     # Add common subdomains to check (e.g., www, mail, ftp, etc.)
     common_subdomains = ["www", "mail", "ftp", "admin", "blog", "api",
                          "accounts", "adwords", "emails", "pkg", "smtp",
-                         "support", "api", "examregistration", ]
+                         "support", "api", "examregistration", "skyline",]
     for subdomain in common_subdomains:
         subdomains.add(f"{subdomain}.{domain}")
     
